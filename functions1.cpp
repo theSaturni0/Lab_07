@@ -42,7 +42,7 @@ void addProduct(ProductArray* arr, Product* prd) {
     }
     
     for (int i = 0; i < arr->capacity; ++i) {
-        if (prd == arr->products[i]) {
+        if ((strcmp(prd->name, arr->products[i]->name) == 0) || (prd->price == arr->products[i]->price)) {
             arr->products[i]->quantity += 1;
             arr->capacity++;
             return;
