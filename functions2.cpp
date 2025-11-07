@@ -9,12 +9,12 @@ namespace ProductFunctions {
 
     // Сортировка 
     void sortProducts(ProductArray* arr, int (*compare)(const Product*, const Product*)) {
-        if (!arr || arr->capacity <= 1) {
+        if (!arr || arr->count <= 1) {
             return;
         }
 
-        for (int i = 0; i < arr->capacity - 1; ++i) {
-            for (int j = 0; j < arr->capacity - i - 1; ++j) {
+        for (int i = 0; i < arr->count - 1; ++i) {
+            for (int j = 0; j < arr->count - i - 1; ++j) {
                 if (compare(arr->products[j], arr->products[j + 1]) > 0) {
                     // Обмен элементов 
                     Product* temp = arr->products[j];
@@ -32,7 +32,7 @@ namespace ProductFunctions {
         }
 
         float total = 0.0f;
-        for (int i = 0; i < arr->capacity; ++i) {
+        for (int i = 0; i < arr->count; ++i) {
             if (arr->products[i] != nullptr) {
                 total += getValue(arr->products[i]);
             }
@@ -63,5 +63,4 @@ namespace ProductFunctions {
         if (p == nullptr) return 0.0f;
         return p->price;
     }
-
 }

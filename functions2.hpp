@@ -4,22 +4,18 @@
 
 namespace ProductFunctions {
 
-	// Сортировка продуктов по компаратору
+	// РЎРѕСЂС‚РёСЂРѕРІРєР°
 	void sortProducts(ProductArray* arr, int (*compare)(const Product*, const Product*));
-
-	// Вычисление суммы значений с помощью функции извлечения
+	// Р’С‹С‡РёСЃР»РµРЅРёРµ СЃСѓРјРјС‹ Р·РЅР°С‡РµРЅРёР№
 	float calculateTotal(const ProductArray* arr, float (*getValue)(const Product*));
 
-	// Функция-компаратор: сравнивает цену
+	//  СЃСЂР°РІРЅРµРЅРёРµ РїРѕ С†РµРЅРµ
 	int compareByPrice(const Product* p1, const Product* p2);
-
-	// Функция-компаратор: сравнение по названию
+	//  СЃСЂР°РІРЅРµРЅРёРµ РїРѕ РЅР°Р·РІР°РЅРёСЋ
 	int compareByName(const Product* p1, const Product* p2);
 
-	// Функция-екстрактор: извлечение стоимости (цена * количество)
+	// РёР·РІР»РµС‡РµРЅРёРµ СЃС‚РѕРёРјРѕСЃС‚Рё
 	float getCost(const Product* p);
-
-	// Функция-екстрактор: извлечение цены
+	//  РёР·РІР»РµС‡РµРЅРёРµ С†РµРЅС‹
 	float getPrice(const Product* p);
-
 }
