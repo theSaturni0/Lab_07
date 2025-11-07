@@ -9,8 +9,9 @@ namespace ProductFunctions {
     };
 
     struct ProductArray {
-        Product* products;
+        Product** products;
         int size;
+        int capacity;
     };
 
 }
