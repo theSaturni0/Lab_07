@@ -7,7 +7,7 @@ using namespace ProductFunctions;
 
 namespace ProductFunctions {
 
-    // Сортировка методом пузырька
+    // Сортировка 
     void sortProducts(ProductArray* arr, int (*compare)(const Product*, const Product*)) {
         if (!arr || arr->capacity <= 1) {
             return;
@@ -40,25 +40,25 @@ namespace ProductFunctions {
         return total;
     }
 
-    // Компаратор: сравнение по цене
+    //  сравнение по цене
     int compareByPrice(const Product* p1, const Product* p2) {
         if (p1->price < p2->price) return -1;
         if (p1->price > p2->price) return 1;
         return 0;
     }
 
-    // Компаратор: сравнение по названию
+    //  сравнение по названию
     int compareByName(const Product* p1, const Product* p2) {
         return strcmp(p1->name, p2->name);
     }
 
-    // Екстрактор: извлечение стоимости
+    // извлечение стоимости
     float getCost(const Product* p) {
         if (p == nullptr) return 0.0f;
         return p->price * p->quantity;
     }
 
-    // Екстрактор: извлечение цены
+    //  извлечение цены
     float getPrice(const Product* p) {
         if (p == nullptr) return 0.0f;
         return p->price;
