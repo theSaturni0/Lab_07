@@ -16,7 +16,7 @@ namespace ProductFunctions {
         for (int i = 0; i < arr->capacity - 1; ++i) {
             for (int j = 0; j < arr->capacity - i - 1; ++j) {
                 if (compare(arr->products[j], arr->products[j + 1]) > 0) {
-                    // Обмен элементов
+                    // Обмен элементов 
                     Product* temp = arr->products[j];
                     arr->products[j] = arr->products[j + 1];
                     arr->products[j + 1] = temp;

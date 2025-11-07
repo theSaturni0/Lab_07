@@ -10,7 +10,7 @@ namespace ProductFunctions {
 	// Вычисление суммы значений с помощью функции извлечения
 	float calculateTotal(const ProductArray* arr, float (*getValue)(const Product*));
 
-	// Функция-компаратор: сравнивает цену 
+	// Функция-компаратор: сравнивает цену
 	int compareByPrice(const Product* p1, const Product* p2);
 
 	// Функция-компаратор: сравнение по названию
