@@ -1,44 +1,67 @@
-﻿#pragma once
-
-#include "data.hpp"
-#include <iostream>
+﻿#include "functions2.hpp"
 #include <cstring>
+#include <iostream>
 
-// Сортировка с использованием указателя на функцию-компаратор
-inline void sortByPrice(Product* arr, int size, int (*compare)(Product, Product)) {
-    for (int i = 0; i < size - 1; i++) {
-        for (int j = 0; j < size - i - 1; j++) {
-            if (compare(arr[j], arr[j + 1]) > 0) {
-                Product temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+using namespace std;
+using namespace ProductFunctions;
+
+namespace ProductFunctions {
+
+    // Сортировка методом пузырька
+    void sortProducts(ProductArray* arr, int (*compare)(const Product*, const Product*)) {
+        if (!arr || arr->capacity <= 1) {
+            return;
+        }
+
+        for (int i = 0; i < arr->capacity - 1; ++i) {
+            for (int j = 0; j < arr->capacity - i - 1; ++j) {
+                if (compare(arr->products[j], arr->products[j + 1]) > 0) {
+                    // Обмен элементов
+                    Product* temp = arr->products[j];
+                    arr->products[j] = arr->products[j + 1];
+                    arr->products[j + 1] = temp;
+                }
             }
         }
     }
-}
 
-// Вычисление суммы с использованием указателя на функцию извлечения значения
-inline float sumPrice(Product* arr, int size, float (*getPrice)(Product)) {
-    float sum = 0;
-    for (int i = 0; i < size; i++) {
-        sum += getPrice(arr[i]);
+    // Вычисление суммы значений
+    float calculateTotal(const ProductArray* arr, float (*getValue)(const Product*)) {
+        if (!arr) {
+            return 0.0f;
+        }
+
+        float total = 0.0f;
+        for (int i = 0; i < arr->capacity; ++i) {
+            if (arr->products[i] != nullptr) {
+                total += getValue(arr->products[i]);
+            }
+        }
+        return total;
     }
-    return sum;
-}
 
-// Компаратор для сравнения продуктов по цене
-inline int comparePrices(Product a, Product b) {
-    if (a.price < b.price) return -1;
-    if (a.price > b.price) return 1;
-    return 0;
-}
+    // Компаратор: сравнение по цене
+    int compareByPrice(const Product* p1, const Product* p2) {
+        if (p1->price < p2->price) return -1;
+        if (p1->price > p2->price) return 1;
+        return 0;
+    }
 
-// Функция извлечения значения: общая стоимость = цена × количество
-inline float getTotal(Product p) {
-    return p.price * p.quantity;
-}
+    // Компаратор: сравнение по названию
+    int compareByName(const Product* p1, const Product* p2) {
+        return strcmp(p1->name, p2->name);
+    }
 
-// Функция вывода продукта
-inline void printProduct(Product p) {
-    std::cout << p.name << " - " << p.price << " руб." << std::endl;
+    // Екстрактор: извлечение стоимости
+    float getCost(const Product* p) {
+        if (p == nullptr) return 0.0f;
+        return p->price * p->quantity;
+    }
+
+    // Екстрактор: извлечение цены
+    float getPrice(const Product* p) {
+        if (p == nullptr) return 0.0f;
+        return p->price;
+    }
+
 }
