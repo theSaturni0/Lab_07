@@ -1,10 +1,21 @@
 #pragma once
+
 #include "data.hpp"
 
-void sortByPrice(Product* arr, int size, int (*compare)(Product, Product));
-float sumPrice(Product* arr, int size, float (*getPrice)(Product));
+namespace ProductFunctions {
 
-int comparePrices(Product a, Product b);
-float getTotal(Product p);
+	// Сортировка
+	void sortProducts(ProductArray* arr, int (*compare)(const Product*, const Product*));
+	// Вычисление суммы значений
+	float calculateTotal(const ProductArray* arr, float (*getValue)(const Product*));
 
-void printProduct(Product p);
+	//  сравнение по цене
+	int compareByPrice(const Product* p1, const Product* p2);
+	//  сравнение по названию
+	int compareByName(const Product* p1, const Product* p2);
+
+	// извлечение стоимости
+	float getCost(const Product* p);
+	//  извлечение цены
+	float getPrice(const Product* p);
+}
