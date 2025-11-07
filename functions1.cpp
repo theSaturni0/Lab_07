@@ -11,7 +11,7 @@ namespace ProductFunctions {
         arr->products = new Product*[size];
         arr->capacity = 0;
         
-        for (int i = 0; i < size; ++i) {
+        for (int i = 0; i < size; i++) {
             arr->products[i] = nullptr;
         }
         
@@ -20,7 +20,7 @@ namespace ProductFunctions {
 
     void ProductFunctions::deleteProductArray(ProductArray* arr) {
         if (arr) {
-            for (int i = 0; i < arr->capacity; ++i) {
+            for (int i = 0; i < arr->capacity; i++) {
                 delete[] arr->products[i]->name;
                 delete[] arr->products[i];
             }
@@ -43,7 +43,7 @@ namespace ProductFunctions {
             return;
         }
         
-        for (int i = 0; i < arr->capacity; ++i) {
+        for (int i = 0; i < arr->capacity; i++) {
             if ((strcmp(prd->name, arr->products[i]->name) == 0) || (prd->price == arr->products[i]->price)) {
                 arr->products[i]->quantity += 1;
                 arr->capacity++;
@@ -54,4 +54,36 @@ namespace ProductFunctions {
         arr->capacity++;
     }
 
+    void filterProducts(ProductArray* arr, bool (*condition)(const Product*)) {
+        int writeIndex = 0;
+        for (int i = 0; i < arr->capacity; i++) {
+            if (condition(arr->products[i])) {
+                if (writeIndex != i) {
+                    arr->products[writeIndex] = arr->products[i];
+                }
+                writeIndex++;
+            } else {
+                delete[] arr->products[i]->name;
+                delete arr->products[i];
+                arr->products[i] = nullptr;  
+            }
+        }
+        arr->size = writeIndex;
+    }
+
+    bool costMoreThan10(const Product* product) {
+        return product->price > 10;
+    }
+
+    bool costLessThan10(const Product* product) {
+        return product->price < 10;
+    }
+
+    bool ammountMoreThan5(const Product* product) {
+        return product->quantity > 5;
+    }
+
+    bool ammountLessThan5(const Product* product) {
+        return product->quantity < 5;
+    }
 }

@@ -9,4 +9,6 @@ namespace ProductFunctions {
 
     Product* defineProduct(const char* name, float price, int quantity);
     void addProduct(ProductArray* arr, Product* prd);
+
+    void filterProducts(ProductArray* arr, bool (*condition)(const Product*));
 }
