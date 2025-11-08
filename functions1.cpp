@@ -101,10 +101,10 @@ namespace ProductFunctions {
     }
 
 
-    void printArray(ProductArray* arr) {
-        for (int i = 0; i < arr->count; i++) {
-            for (int c = 0; c < arr->products[i]->quantity; c++) {
-                cout << arr->products[i]->name << ", price: " << arr->products[i]->price << endl;
+    void printArray(ProductArray& arr) {
+        for (int i = 0; i < arr.count; i++) {
+            for (int c = 0; c < arr.products[i]->quantity; c++) {
+                cout << arr.products[i]->name << ", price: " << arr.products[i]->price << endl;
             }
         }
     }

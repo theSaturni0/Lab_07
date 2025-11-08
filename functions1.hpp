@@ -17,5 +17,5 @@ namespace ProductFunctions {
     bool ammountMoreThan5(const Product* product);
     bool ammountLessThan5(const Product* product);
 
-    void printArray(ProductArray* arr);
+    void printArray(ProductArray& arr);
 }

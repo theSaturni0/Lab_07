@@ -22,19 +22,19 @@ int main() {
     addProduct(Array1, productB);
     addProduct(Array1, productB);
     addProduct(Array1, productC);
-    addProduct(Array1, productC); // не влезает пупупу
+    addProduct(Array1, productC); // не хватает места
 
-    printArray(Array1);
+    printArray(*Array1);
     cout << endl;
 
     filterProducts(Array1, costMoreThan10);
 
-    printArray(Array1);
+    printArray(*Array1);
     cout << endl;
 
     filterProducts(Array1, ammountLessThan5);
 
-    printArray(Array1);
+    printArray(*Array1);
     cout << endl;
 
     deleteProductArray(Array1);
@@ -51,12 +51,12 @@ int main() {
 
     sortProducts(Array2, compareByPrice);
 
-    printArray(Array2);
+    printArray(*Array2);
     cout << endl;
 
     sortProducts(Array2, compareByName);
 
-    printArray(Array2);
+    printArray(*Array2);
     cout << endl;
 
     cout << getPrice(Array2->products[0]) << endl;
@@ -66,6 +66,28 @@ int main() {
 
     cout << calculateTotal(Array2, getPrice) << endl;
     cout << calculateTotal(Array2, getCost) << endl;
+    cout << endl;
+
+    deleteProductArray(Array2);
+
+    ///
+    cout << "array3" << endl;
+
+    ProductArray* Array3 = createProductArray(20);
+    addProduct(Array3, productA);
+    addProduct(Array3, productA);
+    addProduct(Array3, productB);
+    addProduct(Array3, productC);
+    addProduct(Array3, productC);
+
+    printArray(*Array3);
+    cout << endl;
+
+    filterProducts(Array3, [](const Product* p) {
+        return p->price > 12;
+    });
+    printArray(*Array3);
+    cout << endl;
 
     return 0;
 }
